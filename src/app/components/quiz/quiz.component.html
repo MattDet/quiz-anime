@@ -1,0 +1,19 @@
+<div *ngIf="!isQuizCompleted">
+  <app-progress-bar [progress]="(currentQuestionIndex + 1) / questions.length * 100"></app-progress-bar>
+
+  <div class="question-card">
+    <h2>{{ questions[currentQuestionIndex].questionText }}</h2>
+
+    <div class="options">
+      <button *ngFor="let option of questions[currentQuestionIndex].options; let i = index"
+              (click)="selectOption(i)"
+              class="btn btn-primary m-2">
+        {{ option }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isQuizCompleted">
+  <app-result [score]="score" [totalQuestions]="questions.length"></app-result>
+</div>
